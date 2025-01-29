@@ -1,0 +1,27 @@
+# values.yaml
+
+# Argo CD Project Configuration
+project:
+  name: my-project
+  description: "My Argo CD Project"
+  destinations:
+    - server: "https://kubernetes.default.svc"
+      namespace: default
+  sourceRepos:
+    - "*"
+
+# Argo CD Application Configuration
+applications:
+  - name: my-app
+    namespace: argocd
+    project: my-project
+    repoURL: https://github.com/myorg/myrepo.git
+    targetRevision: HEAD
+    path: my-app-path
+    destination:
+      server: "https://kubernetes.default.svc"
+      namespace: default
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
