@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ .Values.project.name }}
+  namespace: argocd
+spec:
+  description: {{ .Values.project.description }}
+  destinations:
+    {{- toYaml .Values.project.destinations | nindent 4 }}
+  sourceRepos:
+    {{- toYaml .Values.project.sourceRepos | nindent 4 }}
